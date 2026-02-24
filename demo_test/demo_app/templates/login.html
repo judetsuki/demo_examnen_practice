@@ -14,19 +14,12 @@
     <a href="{% url 'product_list' %}">вход как гость</a>
     <div class = "login_container">
         <h2>Авторизация</h2>
-        <form method = "post">
-            {% csrf_token %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- Выведет поля внутри тегов <p> с их названиями -->
+    <button type="submit">Войти</button>
+</form>
 
-            <div class = "form-group_1">
-                {{form.username.label.tag}}<br>
-                {{form.username}}
-            </div>
-            <div class = "form-group_2">
-                {{form.password.label.tag}}<br>
-                {{form.password}}
-            </div>
-            <button class = 'submit_button' type="submit"></button>
-        </form>
 
 
     </div>

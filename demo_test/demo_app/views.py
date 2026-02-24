@@ -38,6 +38,7 @@ class ViewProduct(ListView):
     template_name = 'product_list.html'
 
     def get_queryset(self):
+        queryset = super().get_queryset()
         user = self.request.user
         is_staff = user.is_authenticated and user.groups.filter(name__in=['Admin', 'Manager']).exists()
 
