@@ -20,13 +20,19 @@ class UserListView(ListView):
 
 
 class ViewProduct(ListView):
+    model = Product
+    context_object_name = 'products'
     
 
-class CreateProduct(CreateView):
+class CreateProduct(UserPassesTestMixin, CreateView): 
     model = Product
     fields = '__all__'
     template_name = 'product_form.html'
     success_url = reverse_lazy
+
+    def test_func(self):
+        user = self.request.user
+        return user.groups.filter(name__in=['Admin']).exists()
 
 class UpdateProduct(UpdateView):
 
