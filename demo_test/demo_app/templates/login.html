@@ -16,7 +16,7 @@
         <h2>Авторизация</h2>
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}  <!-- Выведет поля внутри тегов <p> с их названиями -->
+    {{ form.as_p }} 
     <button type="submit">Войти</button>
 </form>
 
