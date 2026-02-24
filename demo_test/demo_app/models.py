@@ -7,7 +7,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     supplier = models.ForeignKey('Supplier', on_delete=models.CASCADE)
     manufacturer = models.ForeignKey('manufacturer', on_delete=models.CASCADE)
-    category =
+    category =models.ForeignKey('Category')
     discount =
     stock =
     description =
