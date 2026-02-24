@@ -21,10 +21,11 @@ class StaffOnlyMixin(UserPassesTestMixin):
 
 class UserLoginView(LoginView):
     template_name = 'login.html'
+    next_page = reverse_lazy('product_list')
 
 
 class UserLogoutView(LogoutView):
-    template_name = 'login.html'
+    next_page = reverse_lazy('login.html')
 
 
 class UserListView(ListView):
@@ -51,17 +52,24 @@ class ViewProduct(ListView):
         return queryset
 
 
-class CreateProduct(AdminOnlyMixin, CreateView): 
+class CreateProduct(AdminOnlyMixin, CreateView):
     model = Product
     fields = '__all__'
     template_name = 'product_form.html'
-    success_url = reverse_lazy
+    success_url = reverse_lazy('product_list.html')
 
 
 class UpdateProduct(AdminOnlyMixin, UpdateView):
+    model = Product
+    fields = '__all__'
+    template_name = 'product_form.html'
+    success_url = reverse_lazy('product_list.html')
 
 
 class DeleteProduct(AdminOnlyMixin, DeleteView):
+    model = Product
+    fields = '__all__'
+    success_url = reverse_lazy('product_list.html')
 
 
 class ViewOrder(ListView):
@@ -83,11 +91,21 @@ class ViewOrder(ListView):
         return queryset
 
 
-
 class CreateOrder(CreateView):
+    model = Order
+    fields = '__all__'
+    template_name = 'order_form.html'
+    success_url = reverse_lazy('order_list.html')
 
 
 class UpdateOrder(UpdateView):
+    model = Order
+    fields = '__all__'
+    template_name = 'order_form.html'
+    success_url = reverse_lazy('order_list.html')
 
 
 class DeleteOrder(DeleteView):
+    model = Order
+    fields = '__all__'
+    success_url = reverse_lazy('order_list.html')
